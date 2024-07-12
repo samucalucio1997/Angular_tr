@@ -3,15 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component'; // Certifique-se de importar o componente AppComponent
-import { LoginComponent } from './login/login.component';
+
 import { HttpClientModule } from '@angular/common/http';
-import { ApiService } from './login/api.service';
+
 import { FormsModule } from '@angular/forms';
+import { TesteComponent } from './teste/teste.component';
+import { DiretivaMouseOver} from './DiretivaMouseOver';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent // Adicione o AppComponent à propriedade declarations
+    TesteComponent,
+    DiretivaMouseOver// Adicione o AppComponent à propriedade declarations
   ],
   imports: [
     BrowserModule,
