@@ -12,7 +12,11 @@
         </thead>
         <tbody>
           <tr scope="row" *ngFor="let name of lista">
-            <td appHighlight>{{name}}</td>
+            <td appHighlight> 
+            <a routerLink="/detail" [queryParams]="{ filtro: name }">
+              {{name}}
+            </a>
+            </td>
           </tr>
         </tbody>  
     </table>
