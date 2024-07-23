@@ -1,8 +1,7 @@
 <div class="col-12 pt-2">
-    <form class="col-12">
-      <input type="text" name="nome" class="col-6 mr-3" [(ngModel)]="nome" id="nome" placeholder="Nome"/>
-      <button type="submit" class="btn btn-outline-primary" (click)="adicionarNome()">Submeter o nome</button> 
-    </form>
+    <input type="text"  class="col-6 mr-3" [(ngModel)]="nome" id="nome" placeholder="Nome"/>
+    <input type="date"  class="col-6 mr-3" [(ngModel)]="data" id="data" placeholder="data de nascimento"/>
+    <button type="submit" class="btn btn-outline-primary" (click)="adicionarNome()">Submeter o nome</button> 
 
     <table class="table col-6 mt-3 ml-3">
         <thead>
@@ -11,10 +10,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr scope="row" *ngFor="let name of lista">
+          <tr scope="row" *ngFor="let varios of lista">
+            <td>
+              {{id + 1}}
+            </td>
             <td appHighlight> 
-            <a routerLink="/detail" [queryParams]="{ filtro: name }">
-              {{name}}
+            <a routerLink="/detail" [queryParams]="{ filtro: varios.nome}">
+              {{varios.nome}} 
+              ,{{varios.data | date: 'dd/MM/yyyy'}}
             </a>
             </td>
           </tr>

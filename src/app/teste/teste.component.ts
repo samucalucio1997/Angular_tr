@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServicoArmazenService } from './servico-armazen.service';
 
 @Component({
   selector: 'app-teste',
@@ -7,11 +8,17 @@ import { Component } from '@angular/core';
   styleUrl: './teste.component.css'
 })
 export class TesteComponent {
-   lista:string[] = []
+   lista:{nome:string , data:number}[] = []
    nome='';
+   data:number = 0;
+   id:number = 0;
+
+   constructor(private service: ServicoArmazenService) {} 
 
    adicionarNome(){
-      this.lista.push(this.nome);
-      console.log(this.lista);
-    }
+      console.log('Adicionando nome: ', this.nome);
+      this.service.adicionarNome(this.lista,this.nome,this.data,this.id);
+      this.nome = '';
+      this.data = 0;
+   }
 }
