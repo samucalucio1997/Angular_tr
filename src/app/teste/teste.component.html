@@ -1,25 +1,27 @@
 <div class="col-12 pt-2">
     <input type="text"  class="col-6 mr-3" [(ngModel)]="nome" id="nome" placeholder="Nome"/>
-    <input type="date"  class="col-6 mr-3" [(ngModel)]="data" id="data" placeholder="data de nascimento"/>
+    <input type="date"  class="col-6 mr-3" [(ngModel)]="email" id="data" placeholder="data de nascimento"/>
     <button type="submit" class="btn btn-outline-primary" (click)="adicionarNome()">Submeter o nome</button> 
 
     <table class="table col-6 mt-3 ml-3">
         <thead>
           <tr>
+            <th scope="col">id</th>
             <th scope="col">nome</th>
+            <th scope="col">email</th>
           </tr>
         </thead>
         <tbody>
           <tr scope="row" *ngFor="let varios of lista">
             <td>
-              {{id + 1}}
+              {{varios.id}}
             </td>
             <td appHighlight> 
-            <a routerLink="/detail" [queryParams]="{ filtro: varios.nome}">
-              {{varios.nome}} 
-              ,{{varios.data | date: 'dd/MM/yyyy'}}
+            <a routerLink="/detail" [queryParams]="{ filtro: varios.name}">
+              {{varios.name}} 
             </a>
             </td>
+            <td>{{varios.email}}</td>
           </tr>
         </tbody>  
     </table>
