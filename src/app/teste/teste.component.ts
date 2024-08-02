@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, numberAttribute, OnInit } from '@angular/core';
 import { ServicoArmazenService } from './servico-armazen.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-teste',
@@ -7,28 +9,41 @@ import { ServicoArmazenService } from './servico-armazen.service';
   templateUrl: './teste.component.html',
   styleUrl: './teste.component.css'
 })
-export class TesteComponent implements OnInit{
-   lista:{id:number, name:string , email:string}[] = []
-   nome='';
-   email:string = '';
-   id:number = 0;
+export class TesteComponent {
+   form: FormGroup;
+   posts: {id:number, titulo:string, descricao:string, horario:number}[] = [];
 
-   constructor(private service: ServicoArmazenService) {} 
-   ngOnInit(){
-      this.preencherData();
-      console.log('Lista: ', this.lista);
+   
+   constructor(private formb:FormBuilder, 
+      private servico:ServicoArmazenService,
+      private router: Router) {
+      this.form = this.formb.group({
+         matricula: ['',Validators.required],
+         nome: ['', Validators.required],
+         email: ['', Validators.email],
+      })
    }
 
-   adicionarNome(){
-      console.log('Adicionando nome: ', this.nome);
-      this.service.adicionarNome(this.lista,this.nome,this.email,this.id);
-      this.nome = '';
-      this.email = '';
+   onSubmit() {
+      const aluno = {id: this.generateRandomId(1500000), nome: this.form.value.nome, email: this.form.value.email, matricula: this.form.value.matricula};
+      this.servico.adicionarAluno(aluno);
+      this.form.reset();
+      this.router.navigate(['/detalhe'], {queryParams: {id: aluno.id}});
    }
 
-   preencherData(){
-      this.service.preencherData().subscribe(data => {
-         this.lista = data;
-      });
+
+   generateRandomId(length: number): number {
+      const min = Math.pow(10, length - 1);
+      const max = Math.pow(10, length) - 1;
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+   
+   renderizarPosts() {
+       this.servico.pegarPost().subscribe((posts) => {
+             this.posts = posts;
+       });
    }
+
+
+
 }

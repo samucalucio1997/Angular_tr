@@ -1,4 +1,17 @@
-<p>detalhe works!</p>
 <div>
-    <h1>{{ recebido }}</h1>
+    <form [formGroup]="posts" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="matricula">Titulo</label>
+            <input type="text" class="form-control" id="matricula" formControlName="titulo">
+        </div>
+        <div class="form-group">
+            <label for="nome">descrição</label>
+            <input type="text" class="form-control" id="nome" formControlName="descricao">
+        </div>
+        <div class="form-group">
+            <label for="email">Data/hora</label>
+            <input type="data" class="form-control" id="email" formControlName="horario">
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
 </div>

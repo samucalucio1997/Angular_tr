@@ -1,30 +1,41 @@
 <div class="col-12 pt-2">
-    <input type="text"  class="col-6 mr-3" [(ngModel)]="nome" id="nome" placeholder="Nome"/>
-    <input type="date"  class="col-6 mr-3" [(ngModel)]="email" id="data" placeholder="data de nascimento"/>
-    <button type="submit" class="btn btn-outline-primary" (click)="adicionarNome()">Submeter o nome</button> 
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="matricula">matrícula</label>
+            <input type="text" class="form-control" id="matricula" formControlName="matricula">
+        </div>
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" class="form-control" id="nome" formControlName="nome">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" formControlName="email">
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+</div>
 
-    <table class="table col-6 mt-3 ml-3">
+<div>
+    <table class="table">
         <thead>
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">nome</th>
-            <th scope="col">email</th>
-          </tr>
+            <tr>
+                <th scope="col">Titulo</th>
+                <th scope="col">descrição</th>
+                <th scope="col">Horario</th>
+            </tr>
         </thead>
         <tbody>
-          <tr scope="row" *ngFor="let varios of lista">
-            <td>
-              {{varios.id}}
-            </td>
-            <td appHighlight> 
-            <a routerLink="/detail" [queryParams]="{ filtro: varios.name}">
-              {{varios.name}} 
-            </a>
-            </td>
-            <td>{{varios.email}}</td>
-          </tr>
-        </tbody>  
+            <tr *ngFor="let post of posts">
+                <td>{{ post.titulo }}</td>
+                <td>{{ post.descricao }}</td>
+                <td>{{ post.horario }}</td>
+                <td>
+                    <button class="btn btn-primary" >Editar</button>
+                    <button class="btn btn-danger" >Excluir</button>
+                </td>
+            </tr>
+        </tbody>
     </table>
-
 </div>
     

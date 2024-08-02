@@ -6,24 +6,27 @@ import { AppComponent } from './app.component'; // Certifique-se de importar o c
 
 import { HttpClientModule } from '@angular/common/http';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TesteComponent } from './teste/teste.component';
-import { DiretivaMouseOver} from './DiretivaMouseOver';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { DetalheComponent } from './detalhe/detalhe.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TesteComponent,
-    DiretivaMouseOver// Adicione o AppComponent à propriedade declarations
+    DetalheComponent
+    // DiretivaMouseOver// Adicione o AppComponent à propriedade declarations
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     CommonModule,
-    HttpClientModule,
-    FormsModule
+    HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent] // Adicione o AppComponent à propriedade bootstrap se estiver usando inicialização automática
+  bootstrap: [AppComponent], // Adicione o AppComponent à propriedade bootstrap se estiver usando inicialização automática
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

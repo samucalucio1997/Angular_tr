@@ -8,16 +8,19 @@ import { Observable } from 'rxjs';
 export class ServicoArmazenService {
    
   
-  constructor( private listaService:HttpClient ) {}
+  constructor( private Service:HttpClient ) {}
 
 
-  adicionarNome(lista:{id:number ,name:string , email: string}[],nome:string,email:string,id:number):void{
-    lista.push({id:id, name:nome, email:email});
+  adicionarAluno(Aluno:{id:number, matricula: string, nome: string, email:string}):void{
+      this.Service.post<{id:number, matricula: string, nome: string, email:string}>("https://3.128.249.166:3000/posts", Aluno).subscribe(
+        e => console.log(e)
+      );
   }
 
-  preencherData():Observable<{id:number, name:string , email:string}[]>{
-    return this.listaService.get<{id:number, name:string , email:string}[]>("https://3.128.249.166:3000/clients"); 
-  } 
+
+  pegarPost():Observable<{id:number, titulo:string, descricao:string, horario:number}[]>{
+    return this.Service.get<{id:number, titulo:string, descricao:string, horario:number}[]>("https://3.128.249.166:3000/posts");
+  }
 
   
 }
