@@ -29,10 +29,12 @@
             <tr *ngFor="let post of posts">
                 <td>{{ post.titulo }}</td>
                 <td>{{ post.descricao }}</td>
-                <td>{{ post.horario }}</td>
+                <td>{{ post.dataHora }}</td>
                 <td>
-                    <button class="btn btn-primary" >Editar</button>
-                    <button class="btn btn-danger" >Excluir</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <app-modal-edit></app-modal-edit>
+                    </button>
+                    <button class="btn btn-danger" (click)="excluir(post.id)">Excluir</button>
                 </td>
             </tr>
         </tbody>

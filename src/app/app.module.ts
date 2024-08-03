@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TesteComponent } from './teste/teste.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DetalheComponent } from './detalhe/detalhe.component';
+import { ModalEditComponent } from "./modal-edit/modal-edit.component";
 
 @NgModule({
   declarations: [
@@ -23,8 +24,9 @@ import { DetalheComponent } from './detalhe/detalhe.component';
     AppRoutingModule,
     ReactiveFormsModule,
     CommonModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    ModalEditComponent
+],
   providers: [],
   bootstrap: [AppComponent], // Adicione o AppComponent à propriedade bootstrap se estiver usando inicialização automática
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
