@@ -27,7 +27,7 @@ export class DetalheComponent implements OnInit{
   }
   
   ngOnInit(): void {
-    this.router.queryParams.subscribe(params => {
+    this.router.queryParams.subscribe(params => { // trocar para paramsMap
       console.log(params['id']);
       this.idrecebido = params['id'];
     })
